@@ -187,6 +187,18 @@ impl<S> WebSocketStream<S> {
     }
 }
 
+impl<S> WebSocketStream<S> {
+    /// Returns a shared reference to the inner stream.
+    pub fn get_ref(&self) -> &S {
+        self.inner.get_ref()
+    }
+
+    /// Returns a mutable reference to the inner stream.
+    pub fn get_mut(&mut self) -> &mut S {
+        self.inner.get_mut()
+    }
+}
+
 #[cfg(feature = "stream")]
 impl<S: PeerAddr> PeerAddr for WebSocketStream<S> {
     fn peer_addr(&self) -> IoResult<SocketAddr> {
